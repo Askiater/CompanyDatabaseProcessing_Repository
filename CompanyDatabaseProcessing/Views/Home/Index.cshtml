@@ -1,0 +1,35 @@
+﻿@model IEnumerable<CompanyDatabaseProcessing.Models.Person>
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+<div>
+    <h3>Распродажа книг</h3>
+    <table>
+        <tr class="header">
+            <td><p>Имя</p></td>
+            <td><p>Фамилия</p></td>
+            <td><p>Отчество</p></td>
+            <td></td>
+        </tr>
+        @foreach (var person in Model)
+        {
+            <tr>
+                <td><p>@person.first_name</p></td>
+                <td><p>@person.second_name</p></td>
+                <td><p>@person.last_name</p></td>
+            </tr>
+        }
+    </table>
+
+</div>
+</body>
+</html>
