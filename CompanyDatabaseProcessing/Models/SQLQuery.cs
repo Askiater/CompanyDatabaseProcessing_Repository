@@ -5,9 +5,9 @@ namespace CompanyDatabaseProcessing.Models
 {
     public static class SqlQuery
     {
-        public static List<Person> CreateQuery(string connString)
+        public static List<Person> GetAllData(string connString)
         {
-            var table = new List<Person>();
+            var tableOfPerson = new List<Person>();
             using (var databaseConnection = new SqlConnection(connString))
             {           
                 var cmd = new SqlCommand("SELECT * from People", databaseConnection);
@@ -16,7 +16,7 @@ namespace CompanyDatabaseProcessing.Models
 
                 while (reader.Read())
                 {
-                    table.Add(new Person
+                    tableOfPerson.Add(new Person
                     {
                         first_name = reader.GetString(1),
                         second_name = reader.GetString(2),
@@ -26,7 +26,7 @@ namespace CompanyDatabaseProcessing.Models
                     });
                 }
             }
-            return table;
+            return tableOfPerson;
         }
     }
 }

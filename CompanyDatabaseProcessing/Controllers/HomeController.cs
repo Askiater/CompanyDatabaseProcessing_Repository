@@ -10,12 +10,17 @@ namespace CompanyDatabaseProcessing.Controllers
 {
     public class HomeController : Controller
     {
+        public string ConnString
+        {
+            get { return ConfigurationManager.ConnectionStrings["ConnectonString"].ConnectionString; }
+        }
+
         //readonly TableContext dataContext = new TableContext();
 
         // GET: Home
         public ActionResult Index()
         {
-            var dataContext = SqlQuery.CreateQuery(ConfigurationManager.ConnectionStrings["ConnectonString"].ConnectionString);
+            var dataContext = SqlQuery.GetAllData(ConnString);
             return View(dataContext);
         }
     }
