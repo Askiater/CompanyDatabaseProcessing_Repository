@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -9,12 +10,13 @@ namespace CompanyDatabaseProcessing.Controllers
 {
     public class HomeController : Controller
     {
-        readonly TableContext dataContext = new TableContext();
+        //readonly TableContext dataContext = new TableContext();
 
         // GET: Home
         public ActionResult Index()
         {
-            return View(dataContext.persons);
+            var dataContext = SqlQuery.CreateQuery(ConfigurationManager.ConnectionStrings["ConnectonString"].ConnectionString);
+            return View(dataContext);
         }
     }
 }

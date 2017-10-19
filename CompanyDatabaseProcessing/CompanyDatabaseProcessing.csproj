@@ -104,6 +104,7 @@
     <Compile Include="Models\Department.cs" />
     <Compile Include="Models\Person.cs" />
     <Compile Include="Models\Post.cs" />
+    <Compile Include="Models\SQLQuery.cs" />
     <Compile Include="Models\TableContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

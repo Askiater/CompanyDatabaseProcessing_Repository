@@ -1,5 +1,6 @@
 ﻿@model IEnumerable<CompanyDatabaseProcessing.Models.Person>
 @{
+    ViewBag.Title = "DatabaseProcessing";
     Layout = null;
 }
 
@@ -12,13 +13,12 @@
 </head>
 <body>
 <div>
-    <h3>Распродажа книг</h3>
-    <table>
+    <h3>Поздравляю. все работает!</h3>
+    <table border="1">
         <tr class="header">
             <td><p>Имя</p></td>
             <td><p>Фамилия</p></td>
             <td><p>Отчество</p></td>
-            <td></td>
         </tr>
         @foreach (var person in Model)
         {
