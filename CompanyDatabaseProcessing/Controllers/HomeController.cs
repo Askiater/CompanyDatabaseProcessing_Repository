@@ -1,4 +1,6 @@
-﻿using System.Configuration;
+﻿using System;
+using System.Collections.Generic;
+using System.Configuration;
 using System.Web.Management;
 using System.Web.Mvc;
 using CompanyDatabaseProcessing.Models;
@@ -15,7 +17,15 @@ namespace CompanyDatabaseProcessing.Controllers
         // GET: Home
         public ActionResult Index()
         {
-            var dataContext = SqlQuery.ViewData("GetAllValues", ConnString);
+            List<PersonView> dataContext;
+            try
+            {
+                dataContext = SqlQuery.ViewData("GetAllValues", null, ConnString);
+            }
+            catch (SqlExecutionException e)
+            {
+                return View("OperationFailed", e);
+            }       
             return View(dataContext);
         }
 
@@ -29,7 +39,7 @@ namespace CompanyDatabaseProcessing.Controllers
         public ActionResult AddItemForm(PersonView added)
         {
             SqlQuery.ChangeData("AddValue",added, ConnString);
-            return View("OperationSuccessful");
+            return View("OperationSuccessful", null);
         }
 
         [HttpGet]
@@ -49,7 +59,28 @@ namespace CompanyDatabaseProcessing.Controllers
             {
                 return View("OperationFailed", e);
             }
-            return View("OperationSuccessful");            
+            return View("OperationSuccessful", null);            
+        }
+
+        [HttpGet]
+        public ActionResult FindItemForm()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult FindItemForm(PersonView find)
+        {
+            var findedResult = new List<PersonView>();
+            try
+            {
+                findedResult = SqlQuery.ViewData("FindValue", find, ConnString);
+            }
+            catch (SqlExecutionException e)
+            {
+                return View("OperationFailed", e);
+            }
+            return View("OperationSuccessful", findedResult);
         }
     }
 }

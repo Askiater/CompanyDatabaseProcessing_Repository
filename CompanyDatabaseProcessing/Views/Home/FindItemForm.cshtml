@@ -1,0 +1,26 @@
+﻿@model CompanyDatabaseProcessing.Models.PersonView
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>FindItemForm</title>
+</head>
+<body>
+    <h4> Enter the parameters of the find employee</h4>
+    @using (Html.BeginForm())
+    {
+        <p>First name: @Html.TextBoxFor(x => x.first_name)</p>
+        <p>Second name: @Html.TextBoxFor(x => x.second_name)</p>
+        <p>Last name: @Html.TextBoxFor(x => x.last_name)</p>
+        <p>Department: @Html.TextBoxFor(x => x.dep)</p>
+        <p>Post: @Html.TextBoxFor(x => x.post)</p>
+        <input type="submit" value="Find in database" />
+    }
+</body>
+</html>

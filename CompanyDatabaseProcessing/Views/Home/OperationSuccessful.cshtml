@@ -1,4 +1,6 @@
-﻿@{
+﻿@model IEnumerable<CompanyDatabaseProcessing.Models.PersonView>
+
+@{
     Layout = null;
 }
 
@@ -11,7 +13,29 @@
 </head>
 <body>
 <h1>Operation executed successfully!</h1>
-
+    @if (Model != null)
+    {
+        <h3>Results:</h3>
+        <table border="1">
+            <tr class="header">
+                <td><p>First_name</p></td>
+                <td><p>Second_name</p></td>
+                <td><p>last_name</p></td>
+                <td><p>Department</p></td>
+                <td><p>Post</p></td>
+            </tr>
+            @foreach (var person in Model)
+            {
+                <tr>
+                    <td><p>@person.first_name</p></td>
+                    <td><p>@person.second_name</p></td>
+                    <td><p>@person.last_name</p></td>
+                    <td><p>@person.dep</p></td>
+                    <td><p>@person.post</p></td>
+                </tr>
+            }
+        </table>
+    }
 @Html.ActionLink("Go to homepage", "Index")
 </body>
 </html>
