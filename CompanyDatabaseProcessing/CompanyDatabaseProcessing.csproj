@@ -97,10 +97,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\Post.cs" />
-    <Compile Include="Models\Department.cs" />
-    <Compile Include="Models\TableContext.cs" />
-    <Compile Include="Models\Person.cs" />
+    <Compile Include="Models\PersonView.cs" />
     <Compile Include="Models\SQLQuery.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -109,6 +106,9 @@
     <Content Include="packages.config" />
     <None Include="Properties\PublishProfiles\CompanyDatabaseProcessing.pubxml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\AddItemForm.cshtml" />
+    <Content Include="Views\Home\OperationSuccessful.cshtml" />
+    <Content Include="Views\Helpers\View.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

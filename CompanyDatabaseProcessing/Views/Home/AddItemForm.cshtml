@@ -1,0 +1,23 @@
+﻿@model CompanyDatabaseProcessing.Models.PersonView
+
+@{
+    Layout = null;
+}
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>AddItemForm</title>
+</head>
+<body>
+    @using (Html.BeginForm())
+    {
+        <p>First name: @Html.TextBoxFor(x => x.first_name)</p>
+        <p>Second name: @Html.TextBoxFor(x => x.second_name)</p>
+        <p>Last name: @Html.TextBoxFor(x => x.last_name)</p>
+        <p>Post: @Html.TextBoxFor(x => x.dep)</p>
+        <p>Department: @Html.TextBoxFor(x => x.post)</p>
+        <input type="submit" value="Add to database"/>       
+    }
+</body>
+</html>

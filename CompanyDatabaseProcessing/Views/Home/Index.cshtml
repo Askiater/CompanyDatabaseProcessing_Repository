@@ -1,6 +1,7 @@
-﻿@model IEnumerable<CompanyDatabaseProcessing.Models.Person>
+﻿@using CompanyDatabaseProcessing.Models
+@model IEnumerable<CompanyDatabaseProcessing.Models.PersonView>
 @{
-    ViewBag.Title = "DatabaseProcessing";
+    ViewBag.Title = "Index";
     Layout = null;
 }
 
@@ -14,11 +15,15 @@
 <body>
 <div>
     <h3>Поздравляю. все работает!</h3>
+   
+    @Html.ActionLink("Add item","AddItemForm")
     <table border="1">
         <tr class="header">
             <td><p>Имя</p></td>
             <td><p>Фамилия</p></td>
             <td><p>Отчество</p></td>
+            <td><p>Отдел</p></td>
+            <td><p>Должность</p></td>
         </tr>
         @foreach (var person in Model)
         {
@@ -26,6 +31,8 @@
                 <td><p>@person.first_name</p></td>
                 <td><p>@person.second_name</p></td>
                 <td><p>@person.last_name</p></td>
+                <td><p>@person.dep</p></td>
+                <td><p>@person.post</p></td>
             </tr>
         }
     </table>

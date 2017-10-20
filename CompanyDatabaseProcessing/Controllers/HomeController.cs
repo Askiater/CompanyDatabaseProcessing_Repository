@@ -23,5 +23,18 @@ namespace CompanyDatabaseProcessing.Controllers
             var dataContext = SqlQuery.GetAllData(ConnString);
             return View(dataContext);
         }
+
+        [HttpGet]
+        public ActionResult AddItemForm()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult AddItemForm(PersonView added)
+        {
+            SqlQuery.AddItem(added, ConnString);
+            return View("OperationSuccessful");
+        }
     }
 }
