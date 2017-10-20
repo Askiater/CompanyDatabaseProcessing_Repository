@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Linq;
-using System.Web;
+﻿using System.Configuration;
+using System.Web.Management;
 using System.Web.Mvc;
 using CompanyDatabaseProcessing.Models;
 
@@ -15,12 +12,10 @@ namespace CompanyDatabaseProcessing.Controllers
             get { return ConfigurationManager.ConnectionStrings["ConnectonString"].ConnectionString; }
         }
 
-        //readonly TableContext dataContext = new TableContext();
-
         // GET: Home
         public ActionResult Index()
         {
-            var dataContext = SqlQuery.GetAllData(ConnString);
+            var dataContext = SqlQuery.ViewData("GetAllValues", ConnString);
             return View(dataContext);
         }
 
@@ -33,8 +28,28 @@ namespace CompanyDatabaseProcessing.Controllers
         [HttpPost]
         public ActionResult AddItemForm(PersonView added)
         {
-            SqlQuery.AddItem(added, ConnString);
+            SqlQuery.ChangeData("AddValue",added, ConnString);
             return View("OperationSuccessful");
+        }
+
+        [HttpGet]
+        public ActionResult DeleteItemForm()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult DeleteItemForm(PersonView deleted)
+        {
+            try
+            {
+                SqlQuery.ChangeData("DeleteValue", deleted, ConnString);               
+            }
+            catch (SqlExecutionException e)
+            {
+                return View("OperationFailed", e);
+            }
+            return View("OperationSuccessful");            
         }
     }
 }

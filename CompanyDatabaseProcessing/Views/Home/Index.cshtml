@@ -17,13 +17,14 @@
     <h3>Поздравляю. все работает!</h3>
    
     @Html.ActionLink("Add item","AddItemForm")
+    @Html.ActionLink("Delete item", "DeleteItemForm")
     <table border="1">
         <tr class="header">
-            <td><p>Имя</p></td>
-            <td><p>Фамилия</p></td>
-            <td><p>Отчество</p></td>
-            <td><p>Отдел</p></td>
-            <td><p>Должность</p></td>
+            <td><p>First_name</p></td>
+            <td><p>Second_name</p></td>
+            <td><p>last_name</p></td>
+            <td><p>Department</p></td>
+            <td><p>Post</p></td>
         </tr>
         @foreach (var person in Model)
         {

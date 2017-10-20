@@ -9,10 +9,10 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>AddItemForm</title>
+    <title>DeleteItemForm</title>
 </head>
 <body>
-<h4> Enter the parameters of the add employee</h4>
+<h4> Enter the parameters of the remote employee</h4>
 @using (Html.BeginForm())
 {
     <p>First name: @Html.TextBoxFor(x => x.first_name)</p>
@@ -20,7 +20,7 @@
     <p>Last name: @Html.TextBoxFor(x => x.last_name)</p>
     <p>Department: @Html.TextBoxFor(x => x.dep)</p>
     <p>Post: @Html.TextBoxFor(x => x.post)</p>
-    <input type="submit" value="Add to database"/>
+    <input type="submit" value="Delete from database"/>
 }
 </body>
 </html>

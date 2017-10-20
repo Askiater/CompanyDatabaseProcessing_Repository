@@ -108,7 +108,8 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\AddItemForm.cshtml" />
     <Content Include="Views\Home\OperationSuccessful.cshtml" />
-    <Content Include="Views\Helpers\View.cshtml" />
+    <Content Include="Views\Home\DeleteItemForm.cshtml" />
+    <Content Include="Views\Home\OperationFailed.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

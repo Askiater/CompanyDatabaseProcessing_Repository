@@ -1,17 +1,18 @@
 ﻿using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Web.Management;
 
 namespace CompanyDatabaseProcessing.Models
 {
     public static class SqlQuery
     {
-        public static List<PersonView> GetAllData(string connString)
+        public static List<PersonView> ViewData(string procedureName, string connString)
         {
             var tableOfPerson = new List<PersonView>();
             using (var databaseConnection = new SqlConnection(connString))
             {
-                var cmd = new SqlCommand("GetAllValues", databaseConnection)
+                var cmd = new SqlCommand(procedureName, databaseConnection)
                 {
                     CommandType = CommandType.StoredProcedure
                 };
@@ -33,35 +34,41 @@ namespace CompanyDatabaseProcessing.Models
             return tableOfPerson;
         }
 
-        public static void AddItem(PersonView added, string connString)
+        public static void ChangeData(string procedureName, PersonView item, string connString)
         {
 
             using (var databaseConnection = new SqlConnection(connString))
             {
-                var cmd = new SqlCommand("AddValue", databaseConnection)             
+                var cmd = new SqlCommand(procedureName, databaseConnection)             
                 {
                    CommandType = CommandType.StoredProcedure
                 };
-                #region Add Parameters to AddValue procedure
+
+                #region Add Parameters to procedure
 
                 cmd.Parameters.Add(new SqlParameter("@first_name", SqlDbType.VarChar));
-                cmd.Parameters["@first_name"].Value = added.first_name;
+                cmd.Parameters["@first_name"].Value = item.first_name;
                 cmd.Parameters.Add(new SqlParameter("@second_name", SqlDbType.VarChar));
-                cmd.Parameters["@second_name"].Value = added.second_name;
+                cmd.Parameters["@second_name"].Value = item.second_name;
                 cmd.Parameters.Add(new SqlParameter("@last_name", SqlDbType.VarChar));
-                cmd.Parameters["@last_name"].Value = added.last_name;
+                cmd.Parameters["@last_name"].Value = item.last_name;
                 cmd.Parameters.Add(new SqlParameter("@name_dep", SqlDbType.VarChar));
-                cmd.Parameters["@name_dep"].Value = added.dep;
+                cmd.Parameters["@name_dep"].Value = item.dep;
                 cmd.Parameters.Add(new SqlParameter("@name_post", SqlDbType.VarChar));
-                cmd.Parameters["@name_post"].Value = added.post;
+                cmd.Parameters["@name_post"].Value = item.post;
 
                 #endregion
                 
                 databaseConnection.Open();
-                var reader = cmd.ExecuteReader(); //????? reader?
+                var result = cmd.ExecuteNonQuery();
+                if (result == -1)
+                {
+                    throw new SqlExecutionException("Data that you try to change/delete doesn't exist :(");
+                }
             }
 
         }
+
     }
 }
 
