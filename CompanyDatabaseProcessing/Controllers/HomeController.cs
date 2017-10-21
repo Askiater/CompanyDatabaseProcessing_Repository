@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Configuration;
 using System.Web.Management;
 using System.Web.Mvc;
@@ -71,7 +70,7 @@ namespace CompanyDatabaseProcessing.Controllers
         [HttpPost]
         public ActionResult FindItemForm(PersonView find)
         {
-            var findedResult = new List<PersonView>();
+            List<PersonView> findedResult;
             try
             {
                 findedResult = SqlQuery.ViewData("FindValue", find, ConnString);
@@ -81,6 +80,27 @@ namespace CompanyDatabaseProcessing.Controllers
                 return View("OperationFailed", e);
             }
             return View("OperationSuccessful", findedResult);
+        }
+
+        [HttpGet]
+        public ActionResult ChangeItemForm()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult ChangeItemForm(ChangedData data)
+        {
+            var items = data.CreateListOfPersonView();
+            try
+            {
+                SqlQuery.ChangeData("ReplaceValue", items[0], items[1],ConnString);
+            }
+            catch (SqlExecutionException e)
+            {
+                return View("OperationFailed", e);
+            }
+            return View("OperationSuccessful");
         }
     }
 }

@@ -1,5 +1,4 @@
-﻿@using CompanyDatabaseProcessing.Models
-@model IEnumerable<CompanyDatabaseProcessing.Models.PersonView>
+﻿@model IEnumerable<CompanyDatabaseProcessing.Models.PersonView>
 @{
     ViewBag.Title = "Index";
     Layout = null;
@@ -14,18 +13,21 @@
 </head>
 <body>
 <div>
-    <h3>Поздравляю. все работает!</h3>
+    <h1>База данных сотрудников.</h1>
+    <p><h2>Доступные операции:</h2></p>
    
-    @Html.ActionLink("Add item","AddItemForm")
-    @Html.ActionLink("Delete item", "DeleteItemForm")
-    @Html.ActionLink("Find item", "FindItemForm")
+    @Html.ActionLink("Добавить сотрудника", "AddItemForm")
+    @Html.ActionLink("Удалить сотрудника", "DeleteItemForm")
+    @Html.ActionLink("Найти сотрудника", "FindItemForm")
+    @Html.ActionLink("Заменить сотрудника", "ChangeItemForm")
+
     <table border="1">
         <tr class="header">
-            <td><p>First_name</p></td>
-            <td><p>Second_name</p></td>
-            <td><p>last_name</p></td>
-            <td><p>Department</p></td>
-            <td><p>Post</p></td>
+            <td><p>Имя</p></td>
+            <td><p>Фамилия</p></td>
+            <td><p>Отчество</p></td>
+            <td><p>Отдел</p></td>
+            <td><p>Пост</p></td>
         </tr>
         @foreach (var person in Model)
         {

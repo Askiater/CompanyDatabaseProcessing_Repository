@@ -37,7 +37,7 @@ namespace CompanyDatabaseProcessing.Models
                 var reader = cmd.ExecuteReader();
                 if (!reader.HasRows)
                 {
-                    throw new SqlExecutionException("Data that you try to find doesn't exist :(");
+                    throw new SqlExecutionException("Данных, которые вы пытаетесь найти не существует :( \n Попробуйте еще раз!");
                 }
                 while (reader.Read())
                 {
@@ -83,12 +83,55 @@ namespace CompanyDatabaseProcessing.Models
                 var result = cmd.ExecuteNonQuery();
                 if (result == -1)
                 {
-                    throw new SqlExecutionException("Data that you try to change/delete doesn't exist :(");
+                    throw new SqlExecutionException("Данных, которые вы пытаетесь изменить не существует :( \n Попробуйте еще раз!");
                 }
             }
 
         }
 
+        public static void ChangeData(string procedureName, PersonView deleteItem, PersonView addItem, string connString)
+        {
+            using (var databaseConnection = new SqlConnection(connString))
+            {
+                var cmd = new SqlCommand(procedureName, databaseConnection)
+                {
+                    CommandType = CommandType.StoredProcedure
+                };
+
+                #region Add Parameters to procedure
+
+                cmd.Parameters.Add(new SqlParameter("@first_name_add", SqlDbType.VarChar));
+                cmd.Parameters["@first_name_add"].Value = addItem.first_name;
+                cmd.Parameters.Add(new SqlParameter("@second_name_add", SqlDbType.VarChar));
+                cmd.Parameters["@second_name_add"].Value = addItem.second_name;
+                cmd.Parameters.Add(new SqlParameter("@last_name_add", SqlDbType.VarChar));
+                cmd.Parameters["@last_name_add"].Value = addItem.last_name;
+                cmd.Parameters.Add(new SqlParameter("@name_dep_add", SqlDbType.VarChar));
+                cmd.Parameters["@name_dep_add"].Value = addItem.dep;
+                cmd.Parameters.Add(new SqlParameter("@name_post_add", SqlDbType.VarChar));
+                cmd.Parameters["@name_post_add"].Value = addItem.post;
+
+                cmd.Parameters.Add(new SqlParameter("@first_name_del", SqlDbType.VarChar));
+                cmd.Parameters["@first_name_del"].Value = deleteItem.first_name;
+                cmd.Parameters.Add(new SqlParameter("@second_name_del", SqlDbType.VarChar));
+                cmd.Parameters["@second_name_del"].Value = deleteItem.second_name;
+                cmd.Parameters.Add(new SqlParameter("@last_name_del", SqlDbType.VarChar));
+                cmd.Parameters["@last_name_del"].Value = deleteItem.last_name;
+                cmd.Parameters.Add(new SqlParameter("@name_dep_del", SqlDbType.VarChar));
+                cmd.Parameters["@name_dep_del"].Value = deleteItem.dep;
+                cmd.Parameters.Add(new SqlParameter("@name_post_del", SqlDbType.VarChar));
+                cmd.Parameters["@name_post_del"].Value = deleteItem.post;
+
+                #endregion
+
+                databaseConnection.Open();
+                var result = cmd.ExecuteNonQuery();
+                if (result == -1)
+                {
+                    throw new SqlExecutionException("Данных, которые вы пытаетесь заменить не существует :( \n Попробуйте еще раз!");
+                }
+            }
+        }
     }
 }
 

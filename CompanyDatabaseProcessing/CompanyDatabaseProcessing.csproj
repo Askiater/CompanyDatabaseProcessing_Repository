@@ -97,6 +97,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\ChangingData.cs" />
     <Compile Include="Models\PersonView.cs" />
     <Compile Include="Models\SQLQuery.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -111,6 +112,7 @@
     <Content Include="Views\Home\DeleteItemForm.cshtml" />
     <Content Include="Views\Home\OperationFailed.cshtml" />
     <Content Include="Views\Home\FindItemForm.cshtml" />
+    <Content Include="Views\Home\ChangeItemForm.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

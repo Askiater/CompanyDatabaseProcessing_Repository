@@ -12,15 +12,16 @@
     <title>AddItemForm</title>
 </head>
 <body>
-<h4> Enter the parameters of the add employee</h4>
+<h4> Введите добавляемого сотрудника </h4>
 @using (Html.BeginForm())
 {
-    <p>First name: @Html.TextBoxFor(x => x.first_name)</p>
-    <p>Second name: @Html.TextBoxFor(x => x.second_name)</p>
-    <p>Last name: @Html.TextBoxFor(x => x.last_name)</p>
-    <p>Department: @Html.TextBoxFor(x => x.dep)</p>
-    <p>Post: @Html.TextBoxFor(x => x.post)</p>
-    <input type="submit" value="Add to database"/>
+    <p>Имя: @Html.TextBox("first_name")</p>
+    <p>Фамилия: @Html.TextBox("second_name")</p>
+    <p>Отчество: @Html.TextBox("last_name")</p>
+    <p>Отдел: @Html.TextBox("dep")</p>
+    <p>Пост: @Html.TextBox("post")</p>
+
+    <input type="submit" value="Добавить сотрудника"/>
 }
 </body>
 </html>

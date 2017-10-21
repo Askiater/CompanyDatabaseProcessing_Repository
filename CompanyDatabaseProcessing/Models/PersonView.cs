@@ -1,4 +1,6 @@
-﻿namespace CompanyDatabaseProcessing.Models
+﻿using System;
+
+namespace CompanyDatabaseProcessing.Models
 {
     public class PersonView
     {

@@ -1,0 +1,36 @@
+﻿@model IEnumerable<CompanyDatabaseProcessing.Models.ChangedData>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ChangeItemForm</title>
+</head>
+<body>
+<h4> Введите параметры для замены сотруднка: </h4>
+@using (Html.BeginForm())
+{
+    <p><h3>Введите заменяемого:</h3> </p>
+    <p>Имя: @Html.TextBox("first_name_del")</p>
+    <p>Фамилия: @Html.TextBox("second_name_del")</p>
+    <p>Отчество: @Html.TextBox("last_name_del")</p>
+    <p>Отдел: @Html.TextBox("dep_del")</p>
+    <p>Пост: @Html.TextBox("post_del")</p>
+
+    <p><h3>Введите на кого заменить:</h3> </p>
+    <p>Имя: @Html.TextBox("first_name_add")</p>
+    <p>Фамилия: @Html.TextBox("second_name_add")</p>
+    <p>Отчество: @Html.TextBox("last_name_add")</p>
+    <p>Отдел: @Html.TextBox("dep_add")</p>
+    <p>Пост: @Html.TextBox("post_add")</p>
+    
+    <input type="submit" value="Заменить данные" />
+}
+        
+</body>
+</html>
