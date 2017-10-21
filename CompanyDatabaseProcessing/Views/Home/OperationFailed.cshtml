@@ -1,6 +1,7 @@
 ﻿@model System.Web.Management.SqlExecutionException
 
 @{
+    ViewBag.Title = "UnSuccessOperation";
     Layout = null;
 }
 
@@ -9,13 +10,36 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Success!</title>
+    <title>Неудача!</title>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <style>
+        .btn a {
+            color: white;
+            text-decoration: none;
+        }
+
+        body {
+            background-color: white;
+        }
+    </style>
 </head>
 <body>
-<h1>Невозможно выполнить операцию!</h1>
-
-<h2>Сообщение: @Model.Message</h2>
-
-@Html.ActionLink("Вернуться на домашнюю страницу", "Index")
+    <div class="panel-danger">
+        <div class="panel-heading text-center">
+            <h2>Невозможно выполнить операцию!</h2>
+        </div>
+        <div class="panel-body">
+            <div class="text-center">
+                <h3> @Model.Message </h3>
+            </div>
+            <div class="container--fluid">
+                <div class="row">
+                    <div class="text-center btn btn-danger btn-lg col-sm-offset-4 col-sm-4 col-xs-12">
+                        @Html.ActionLink("Вернуться на домашнюю страницу", "Index")
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>
 </body>
 </html>

@@ -37,7 +37,7 @@ namespace CompanyDatabaseProcessing.Models
                 var reader = cmd.ExecuteReader();
                 if (!reader.HasRows)
                 {
-                    throw new SqlExecutionException("Данных, которые вы пытаетесь найти не существует :( \n Попробуйте еще раз!");
+                    throw new SqlExecutionException("Данные которые вы пытаетесь найти не существует :(");
                 }
                 while (reader.Read())
                 {
@@ -83,7 +83,7 @@ namespace CompanyDatabaseProcessing.Models
                 var result = cmd.ExecuteNonQuery();
                 if (result == -1)
                 {
-                    throw new SqlExecutionException("Данных, которые вы пытаетесь изменить не существует :( \n Попробуйте еще раз!");
+                    throw new SqlExecutionException("Данные которые вы пытаетесь изменить не существует :(");
                 }
             }
 
@@ -128,7 +128,7 @@ namespace CompanyDatabaseProcessing.Models
                 var result = cmd.ExecuteNonQuery();
                 if (result == -1)
                 {
-                    throw new SqlExecutionException("Данных, которые вы пытаетесь заменить не существует :( \n Попробуйте еще раз!");
+                    throw new SqlExecutionException("Данных которые вы пытаетесь заменить не существует :(");
                 }
             }
         }

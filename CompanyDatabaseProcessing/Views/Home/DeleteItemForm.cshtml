@@ -1,6 +1,7 @@
 ﻿@model CompanyDatabaseProcessing.Models.PersonView
 
 @{
+    ViewBag.Title = "DeleteItemForm";
     Layout = null;
 }
 
@@ -9,19 +10,68 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>DeleteItemForm</title>
+    <title>Удалить запись</title>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <style>
+        .btn a {
+            color: white;
+            text-decoration: none;
+        }
+
+        body {
+            background-color: white;
+        }
+    </style>
 </head>
 <body>
-<h4> Введите параметры удаляемого сотрудника</h4>
-@using (Html.BeginForm())
-{
-    <p>Имя: @Html.TextBox("first_name")</p>
-    <p>Фамилия: @Html.TextBox("second_name")</p>
-    <p>Отчество: @Html.TextBox("last_name")</p>
-    <p>Отдел: @Html.TextBox("dep")</p>
-    <p>Пост: @Html.TextBox("post")</p>
-
-    <input type="submit" value="Удалить сотрудника"/>
-}
+    <div class="panel-danger">
+        <div class="panel-heading text-center">
+            <h4>Введите удаляемого сотрудника: </h4>
+        </div>
+        <div class="panel-body">
+            @using (Html.BeginForm())
+            {
+                <div class="container">
+                    <div class="row">
+                        <div class="form-group col-lg-offset-3 col-lg-6">
+                            <label>Имя:</label>
+                            @Html.TextBoxFor(x => x.first_name, new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-lg-offset-3 col-lg-6">
+                            <label>Фамилия:</label>
+                            @Html.TextBoxFor(x => x.second_name, new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-lg-offset-3 col-lg-6">
+                            <label>Отчество:</label>
+                            @Html.TextBoxFor(x => x.last_name, new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-lg-offset-3 col-lg-6">
+                            <label>Отдел:</label>
+                            @Html.TextBoxFor(x => x.dep, new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-lg-offset-3 col-lg-6">
+                            <label>Пост:</label>
+                            @Html.TextBoxFor(x => x.post, new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-lg-offset-3 col-lg-6">
+                            <div class="text-center">
+                                <input type="submit" value="Удалить запись" class="btn btn-danger btn-lg" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
 </body>
 </html>

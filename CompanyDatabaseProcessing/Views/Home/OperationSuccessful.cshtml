@@ -1,6 +1,7 @@
 ﻿@model IEnumerable<CompanyDatabaseProcessing.Models.PersonView>
 
 @{
+    ViewBag.Title = "SuccessOperation";
     Layout = null;
 }
 
@@ -9,33 +10,80 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Success!</title>
+    <title>Успех!</title>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <style>
+        .btn a {
+            color: white;
+            text-decoration: none;
+        }
+
+        body {
+            background-color: white;
+        }
+    </style>
 </head>
 <body>
-<h1>Операция выполнена успешно!!</h1>
-    @if (Model != null)
-    {
-        <h3>Результаты по вашему запросу:</h3>
-        <table border="1">
-            <tr class="header">
-                <td><p>Имя</p></td>
-                <td><p>Фамилия</p></td>
-                <td><p>Отчество</p></td>
-                <td><p>Отдел</p></td>
-                <td><p>Пост</p></td>
-            </tr>
-            @foreach (var person in Model)
+    <div class="panel-success">
+        <div class="panel-heading text-center">
+            <h2>Операция выполнена успешно!</h2>
+        </div>
+        <div class="panel-body">
+            @if (Model != null)
             {
-                <tr>
-                    <td><p>@person.first_name</p></td>
-                    <td><p>@person.second_name</p></td>
-                    <td><p>@person.last_name</p></td>
-                    <td><p>@person.dep</p></td>
-                    <td><p>@person.post</p></td>
-                </tr>
+                <div class="text-center">
+                    <h3>Результаты по вашему запросу:</h3>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-hover table-bordered">
+                        <tr class="header">
+                            <td>
+                                <strong>Имя</strong>
+                            </td>
+                            <td>
+                                <strong>Фамилия</strong>
+                            </td>
+                            <td>
+                                <strong>Отчество</strong>
+                            </td>
+                            <td>
+                                <strong>Отдел</strong>
+                            </td>
+                            <td>
+                                <strong>Пост</strong>
+                            </td>
+                        </tr>
+                        @foreach (var person in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @person.first_name
+                                </td>
+                                <td>
+                                    @person.second_name
+                                </td>
+                                <td>
+                                    @person.last_name
+                                </td>
+                                <td>
+                                    @person.dep
+                                </td>
+                                <td>
+                                    @person.post
+                                </td>
+                            </tr>
+                        }
+                    </table>
+                </div>
             }
-        </table>
-    }
-@Html.ActionLink("Вернуться на домашнюю страницу", "Index")
+            <div class="container--fluid">
+                <div class="row">
+                    <div class="text-center btn btn-success btn-lg col-sm-offset-4 col-sm-4 col-xs-12">
+                        @Html.ActionLink("Вернуться на домашнюю страницу", "Index")
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

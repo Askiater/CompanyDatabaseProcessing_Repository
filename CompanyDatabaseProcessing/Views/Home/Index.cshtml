@@ -9,38 +9,85 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
+    <title>Домашняя страница</title>
+    <link href="~/Content/bootstrap.css" rel="stylesheet"/>
+    <style>
+        .btn a {
+            color: white;
+            text-decoration: none;
+        }
+
+        body {
+            background-color: white;
+        }
+    </style>
+
 </head>
 <body>
-<div>
-    <h1>База данных сотрудников.</h1>
-    <p><h2>Доступные операции:</h2></p>
-   
-    @Html.ActionLink("Добавить сотрудника", "AddItemForm")
-    @Html.ActionLink("Удалить сотрудника", "DeleteItemForm")
-    @Html.ActionLink("Найти сотрудника", "FindItemForm")
-    @Html.ActionLink("Заменить сотрудника", "ChangeItemForm")
+    <div>
+        <div class="text-center">
+            <h1>База данных сотрудников <small> <br> Ниже представлены доступные операции для работы с БД:</small></h1>
+        </div>
 
-    <table border="1">
-        <tr class="header">
-            <td><p>Имя</p></td>
-            <td><p>Фамилия</p></td>
-            <td><p>Отчество</p></td>
-            <td><p>Отдел</p></td>
-            <td><p>Пост</p></td>
-        </tr>
-        @foreach (var person in Model)
-        {
-            <tr>
-                <td><p>@person.first_name</p></td>
-                <td><p>@person.second_name</p></td>
-                <td><p>@person.last_name</p></td>
-                <td><p>@person.dep</p></td>
-                <td><p>@person.post</p></td>
-            </tr>
-        }
-    </table>
-
-</div>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="btn-group btn-block">
+                    <div class="col-xs-6 col-sm-3 btn btn-primary">
+                        @Html.ActionLink("Добавить сотрудника", "AddItemForm")
+                    </div>
+                    <div class="col-xs-6 col-sm-3 btn btn-primary">
+                        @Html.ActionLink("Удалить сотрудника", "DeleteItemForm")
+                    </div>
+                    <div class="col-xs-6 col-sm-3 btn btn-primary">
+                        @Html.ActionLink("Найти сотрудника", "FindItemForm")
+                    </div>
+                    <div class="col-xs-6 col-sm-3 btn btn-primary">
+                        @Html.ActionLink("Заменить сотрудника", "ChangeItemForm")
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-hover table-bordered">
+                <tr class="header">
+                    <td>
+                        <strong>Имя</strong>
+                    </td>
+                    <td>
+                        <strong>Фамилия</strong>
+                    </td>
+                    <td>
+                        <strong>Отчество</strong>
+                    </td>
+                    <td>
+                        <strong>Отдел</strong>
+                    </td>
+                    <td>
+                        <strong>Пост</strong>
+                    </td>
+                </tr>
+                @foreach (var person in Model)
+                {
+                    <tr>
+                        <td>
+                            @person.first_name
+                        </td>
+                        <td>
+                            @person.second_name
+                        </td>
+                        <td>
+                            @person.last_name
+                        </td>
+                        <td>
+                            @person.dep
+                        </td>
+                        <td>
+                            @person.post
+                        </td>
+                    </tr>
+                }
+            </table>
+        </div>
+        </div>
 </body>
 </html>
