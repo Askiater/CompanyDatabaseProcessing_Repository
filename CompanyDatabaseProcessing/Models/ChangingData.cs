@@ -2,6 +2,10 @@
 
 namespace CompanyDatabaseProcessing.Models
 {
+    /// <summary>
+    /// Особый вид данных для для работы с формой ChangeItemForm. Возвращает 2 экземпляра полей (1 - для добавляемого элемента, другой для удаляемого элемента). 
+    /// Выполняет компиляцию полей в стандартный вид PersonView посредством вызова метода CreateListOfPersonView
+    /// </summary>
     public class ChangedData
     {
         public List<PersonView> CreateListOfPersonView()

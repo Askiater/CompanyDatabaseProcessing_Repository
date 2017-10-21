@@ -8,12 +8,19 @@ namespace CompanyDatabaseProcessing.Controllers
 {
     public class HomeController : Controller
     {
+        /// <summary>
+        /// Строка соединения с базой данных, значение которой указано в Web.config
+        /// </summary>
         public string ConnString
         {
             get { return ConfigurationManager.ConnectionStrings["ConnectonString"].ConnectionString; }
         }
 
         // GET: Home
+        /// <summary>
+        /// Главная страница веб-приложения
+        /// </summary>
+        /// <returns></returns>
         public ActionResult Index()
         {
             List<PersonView> dataContext;
@@ -28,6 +35,10 @@ namespace CompanyDatabaseProcessing.Controllers
             return View(dataContext);
         }
 
+        /// <summary>
+        /// Форма запроса на добавления элемента в БД (Запросы типа Get и Post)
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public ActionResult AddItemForm()
         {
@@ -41,6 +52,10 @@ namespace CompanyDatabaseProcessing.Controllers
             return View("OperationSuccessful", null);
         }
 
+        /// <summary>
+        /// Форма запроса на удаление элемента из БД (Запросы типа Get и Post)
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public ActionResult DeleteItemForm()
         {
@@ -61,6 +76,11 @@ namespace CompanyDatabaseProcessing.Controllers
             return View("OperationSuccessful", null);            
         }
 
+
+        /// <summary>
+        /// Форма запроса на нахождение фиксированного элемента в БД (Запросы типа Get и Post)
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public ActionResult FindItemForm()
         {
@@ -82,6 +102,10 @@ namespace CompanyDatabaseProcessing.Controllers
             return View("OperationSuccessful", findedResult);
         }
 
+        /// <summary>
+        /// Форма запроса на замену фиксированного элемента в БД (Запросы типа Get и Post)
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public ActionResult ChangeItemForm()
         {

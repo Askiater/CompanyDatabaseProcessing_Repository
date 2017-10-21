@@ -7,6 +7,13 @@ namespace CompanyDatabaseProcessing.Models
 {
     public static class SqlQuery
     {
+        /// <summary>
+        /// Вызывает хранимую процедуру в БД осуществляющую поиск по БД для нахождения элементов совпадающих с параметром item. Если item == null, то поиска не происходит, а производиться вывод всех значений
+        /// </summary>
+        /// <param name="procedureName">Имя хранимой процедуры</param>
+        /// <param name="item">Параметр PersonView по которому производиться поиск. В случае если элемент не найден в БД метод вызывает исключение SqlExecutionException</param>
+        /// <param name="connString">Строка соединения с сервером</param>
+        /// <returns></returns>
         public static List<PersonView> ViewData(string procedureName, PersonView item, string connString)
         {
             var tableOfPerson = new List<PersonView>();
@@ -51,10 +58,15 @@ namespace CompanyDatabaseProcessing.Models
                     });
                 }
             }
-            return tableOfPerson;
+            return tableOfPerson;  //Комментарий: Если item == null, то в выходную таблицу производитсья запись всех значений из БД
         }
-
-        public static void ChangeData(string procedureName, PersonView item, string connString)
+        /// <summary>
+        /// Вызывает процедуру для произведения удаления данных в БД
+        /// </summary>
+        /// <param name="procedureName">Имя вызываемой процедуры</param>
+        /// <param name="item">Параметр PersonView который подлежит удалению. В случае если элемент не найден в БД метод вызывает исключение SqlExecutionException</param>
+        /// <param name="connString">Строка соединения с сервером</param>
+        public static void ChangeData(string procedureName, PersonView item, string connString) //Комментарий: Название выбрано из соображений возможной расширямости методы в дальнейшем
         {
 
             using (var databaseConnection = new SqlConnection(connString))
@@ -88,7 +100,13 @@ namespace CompanyDatabaseProcessing.Models
             }
 
         }
-
+        /// <summary>
+        /// Вызывает процедуру для произведения замены данных в БД
+        /// </summary>
+        /// <param name="procedureName">Имя вызываемой процедуры</param>
+        /// <param name="deleteItem">Заменяемый элемент в базе данных. В случае если элемент не найден в БД метод вызывает исключение SqlExecutionException</param>
+        /// <param name="addItem">Элемент на которой производитсья замена</param>
+        /// <param name="connString">Строка соединения с сервером</param>
         public static void ChangeData(string procedureName, PersonView deleteItem, PersonView addItem, string connString)
         {
             using (var databaseConnection = new SqlConnection(connString))
@@ -136,44 +154,3 @@ namespace CompanyDatabaseProcessing.Models
 }
 
 
-
-//using System.Data.Entity;
-
-//namespace CompanyDatabaseProcessing.Models
-//{
-//    public class TableContext : DbContext
-//    {
-//        public DbSet<Department> deps { get; set; }
-//        public DbSet<Post> posts { get; set; }
-//        public DbSet<Person> persons { get; set; }
-//    }
-//}
-
-//namespace CompanyDatabaseProcessing.Models
-//{
-//    public class Post
-//    {
-//        public int id { get; set; }
-//        public string name { get; set; }
-//    }
-//}
-//namespace CompanyDatabaseProcessing.Models
-//{
-//    public class Department
-//    {
-//        public int id { get; set; }
-//        public string name { get; set; }
-//    }
-//}
-//namespace CompanyDatabaseProcessing.Models
-//{
-//    public class Person
-//    {
-//        public int id { get; set; }
-//        public string first_name { get; set; }
-//        public string second_name { get; set; }
-//        public string last_name { get; set; }
-//        public int id_dep { get; set; }
-//        public int id_post { get; set; }
-//    }
-//}
