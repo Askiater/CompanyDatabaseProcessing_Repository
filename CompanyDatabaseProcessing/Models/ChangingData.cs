@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace CompanyDatabaseProcessing.Models
 {
@@ -31,16 +32,34 @@ namespace CompanyDatabaseProcessing.Models
             };
         }
 
+        [Required(ErrorMessage = "Пожалуйста, введите имя добавляемого")]
         public string first_name_add { get; set; }
+
+        [Required(ErrorMessage = "Пожалуйста, введите фамилию добавляемого")]
         public string second_name_add { get; set; }
+
+        [Required(ErrorMessage = "Пожалуйста, введите отчество добавляемого")]
         public string last_name_add { get; set; }
+
+        [Required(ErrorMessage = "Пожалуйста, введите отдел добавляемого")]
         public string dep_add { get; set; }
+
+        [Required(ErrorMessage = "Пожалуйста, введите пост добавляемого")]
         public string post_add { get; set; }
 
+        [Required(ErrorMessage = "Пожалуйста, введите имя заменяемого")]
         public string first_name_del { get; set; }
+
+        [Required(ErrorMessage = "Пожалуйста, введите фамилию заменяемого")]
         public string second_name_del { get; set; }
+
+        [Required(ErrorMessage = "Пожалуйста, введите отчество заменяемого")]
         public string last_name_del { get; set; }
+
+        [Required(ErrorMessage = "Пожалуйста, введите отдел заменяемого")]
         public string dep_del { get; set; }
+
+        [Required(ErrorMessage = "Пожалуйста, введите пост заменяемого")]
         public string post_del { get; set; }
     }
 }

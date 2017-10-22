@@ -48,8 +48,15 @@ namespace CompanyDatabaseProcessing.Controllers
         [HttpPost]
         public ActionResult AddItemForm(PersonView added)
         {
-            SqlQuery.ChangeData("AddValue",added, ConnString);
-            return View("OperationSuccessful", null);
+            if (ModelState.IsValid)
+            {
+                SqlQuery.ChangeData("AddValue", added, ConnString);
+                return View("OperationSuccessful", null);
+            }
+            else
+            {
+                return View();
+            }         
         }
 
         /// <summary>
@@ -65,15 +72,22 @@ namespace CompanyDatabaseProcessing.Controllers
         [HttpPost]
         public ActionResult DeleteItemForm(PersonView deleted)
         {
-            try
+            if (ModelState.IsValid)
             {
-                SqlQuery.ChangeData("DeleteValue", deleted, ConnString);               
+                try
+                {
+                    SqlQuery.ChangeData("DeleteValue", deleted, ConnString);
+                }
+                catch (SqlExecutionException e)
+                {
+                    return View("OperationFailed", e);
+                }
+                return View("OperationSuccessful", null);
             }
-            catch (SqlExecutionException e)
+            else
             {
-                return View("OperationFailed", e);
-            }
-            return View("OperationSuccessful", null);            
+                return View();
+            }    
         }
 
 
@@ -90,16 +104,23 @@ namespace CompanyDatabaseProcessing.Controllers
         [HttpPost]
         public ActionResult FindItemForm(PersonView find)
         {
-            List<PersonView> findedResult;
-            try
+            if (ModelState.IsValid)
             {
-                findedResult = SqlQuery.ViewData("FindValue", find, ConnString);
-            }
-            catch (SqlExecutionException e)
+                List<PersonView> findedResult;
+                try
+                {
+                    findedResult = SqlQuery.ViewData("FindValue", find, ConnString);
+                }
+                catch (SqlExecutionException e)
+                {
+                    return View("OperationFailed", e);
+                }
+                return View("OperationSuccessful", findedResult);
+            }       
+            else
             {
-                return View("OperationFailed", e);
-            }
-            return View("OperationSuccessful", findedResult);
+                return View();
+            }    
         }
 
         /// <summary>
@@ -115,16 +136,23 @@ namespace CompanyDatabaseProcessing.Controllers
         [HttpPost]
         public ActionResult ChangeItemForm(ChangedData data)
         {
-            var items = data.CreateListOfPersonView();
-            try
+            if (ModelState.IsValid)
             {
-                SqlQuery.ChangeData("ReplaceValue", items[0], items[1],ConnString);
+                var items = data.CreateListOfPersonView();
+                try
+                {
+                    SqlQuery.ChangeData("ReplaceValue", items[0], items[1], ConnString);
+                }
+                catch (SqlExecutionException e)
+                {
+                    return View("OperationFailed", e);
+                }
+                return View("OperationSuccessful");
             }
-            catch (SqlExecutionException e)
+            else
             {
-                return View("OperationFailed", e);
+                return View();
             }
-            return View("OperationSuccessful");
         }
     }
 }
